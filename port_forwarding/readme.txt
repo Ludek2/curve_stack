@@ -1,19 +1,21 @@
-##########################################################################################
-enable_forwarding.sh is a script that simplifies port forwarding set up. 
+enable_forwarding.sh IS A SCRIPT THAT SIMPLIFIES PORT FORWARDING SET UP
+
 You can use it to redirect incomming network traffic on a defined port to a different machine.
-###########################################################################################
 
 SYNTAX:
 
-   ./enable_forwarding.sh export_file_path bind_address bind_port private_host_address destination_port
+./enable_forwarding.sh export_file_path bind_address bind_port private_host_address destination_port
 
-         bind_address: the address where some network traffic will be received (typically from internet)
+
+VALUES:
+
+bind_address: the address where some network traffic will be received (typically from internet)
        
-         bind_port: any port
+bind_port: any port
        
-         private_host_address: address of the host where the network traffic will be forwarded
-       
-         destination_port: any port
+private_host_address: address of the host where the network traffic will be forwarded
+      
+destination_port: any port
 
 
 EXAMPLE:

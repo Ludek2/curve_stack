@@ -1,3 +1,7 @@
+HOW TO CREATE CLIENT OPENVPN SECURITY KEYS: 
+
+
+
 Connect to the server and use this sequence of commands to create new client keys:
 
 change directory:
