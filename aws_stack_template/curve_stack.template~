@@ -32,7 +32,7 @@
     },
     
     "LBInstanceIds" : {
-        "Type" : "List<AWS::EC2::Instance::Id>",
+        "Type" : "List<AWS::EC2::Instane::Id>",
         "Description" : "Insert two or more instances that will be behind the load balancer",
         "ConstraintDescription" : "insert instance-id1, instance-id2, ..."
     },
