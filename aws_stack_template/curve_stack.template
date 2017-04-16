@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "This stack creates VPN server and internal loadbalancer in order to access VMs that are running Magical, assuming that Magical is listenning on the port 3000",
+  "Description" : "This stack creates an instance for an openVPN server and creates internal loadbalancer in order to access VMs that are running Magical, assuming that Magical is listenning on the port 3000",
 
   "Parameters" : {
     "InstanceType" : {
@@ -26,14 +26,14 @@
     },
     
     "LBsubnetID" : {
-      "Description" : "Load balancer subnet-id",
+      "Description" : "Load balancer subnet id",
       "Type" : "AWS::EC2::Subnet::Id",
       "ConstraintDescription" : "subnet for the load balancer."
     },
     
     "LBInstanceIds" : {
         "Type" : "List<AWS::EC2::Instance::Id>",
-        "Description" : "Insert two or more instances that will be behind the load balancer",
+        "Description" : "Insert two or more instances that will be behind the load balancer, instances must be in the same subnet",
         "ConstraintDescription" : "insert instance-id1, instance-id2, ..."
     },
     
@@ -54,9 +54,7 @@
     }
   },
 
-  
-  
-  
+    
   
   "Resources" : {
     "EC2Instance" : {
@@ -84,7 +82,7 @@
     "ElasticLoadBalancer" : {
       "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
       "Properties" : {
-        "AvailabilityZones" : { "Fn::GetAZs" : "" },
+        "Subnets" : [ {"Ref" : "LBsubnetID"} ],
         "Instances" :  { "Ref" : "LBInstanceIds"} ,
         "SecurityGroups" : [ { "Ref" : "LBsecurityGroupId" }],
         "Listeners" : [ {
@@ -131,6 +129,7 @@
       "Description" : "InstanceId of the newly created EC2 instance",
       "Value" : { "Ref" : "EC2Instance" }
     },
+    
     "InstanceIPAddress" : {
       "Description" : "IP address of the newly created EC2 instance",
       "Value" : { "Ref" : "IPAddress" }
