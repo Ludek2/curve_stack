@@ -1,6 +1,6 @@
 ##########################################################################################
 enable_forwarding.sh is a script that simplifies port forwarding set up. 
-You can use it to redirect incomming network traffic on a defined port to different machine.
+You can use it to redirect incomming network traffic on a defined port to a different machine.
 ###########################################################################################
 
 SYNTAX:
