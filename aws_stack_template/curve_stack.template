@@ -25,6 +25,12 @@
       "ConstraintDescription" : "must be the name of an existing VPC."
     },
     
+    "EBSVolumeSize" : {
+      "Description" : "EBS volume size of the encripted volume attached to the openVPN server",
+      "Type" : "Number",
+      "ConstraintDescription" : "must be a valid size of an EBS gp2 volume."
+    },
+    
     "LBsubnetID" : {
       "Description" : "Load balancer subnet id",
       "Type" : "AWS::EC2::Subnet::Id",
@@ -71,7 +77,7 @@
                   "Ebs" : {
                      "VolumeType" : "gp2",
                      "DeleteOnTermination" : "true",
-                     "VolumeSize" : "16",
+                     "VolumeSize" : { "Ref" : "EBSVolumeSize" },
                      "Encrypted" : "true"
                   }
                }
