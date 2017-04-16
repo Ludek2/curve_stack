@@ -1,4 +1,4 @@
-enable_forwarding.sh IS A SCRIPT THAT SIMPLIFIES PORT FORWARDING SET UP
+THIS IS A SCRIPT THAT SIMPLIFIES PORT FORWARDING SET UP
 
 You can use it to redirect incomming network traffic on a defined port to a different machine.
 
