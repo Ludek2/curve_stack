@@ -1,5 +1,8 @@
 #This sequence of commands will install an openVPN server, generate security keys and start an openVPN server
-#you need to open the port 1194 in the security profile
+
+#Please follow the instructions to export security keys.
+
+#the port 1194 in the security profile has to be opened
 
 apt-get install openvpn easy-rsa
 
