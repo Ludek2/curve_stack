@@ -71,6 +71,7 @@
         "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" } ],
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : "ami-405f7226",
+        "EbsOptimized" : "True",
         "BlockDeviceMappings" : [
                {
                   "DeviceName" : "/dev/sdm",
@@ -124,7 +125,7 @@
                 "IpProtocol": "tcp",
                 "FromPort": "3000",
                 "ToPort": "3000",
-                "CidrIp": "0.0.0.0/0"
+                "CidrIp": "10.10.0.0/16"
             }
      },
     

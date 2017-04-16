@@ -25,6 +25,12 @@
       "ConstraintDescription" : "must be the name of an existing VPC."
     },
     
+    "EBSVolumeSize" : {
+      "Description" : "EBS volume size of the encripted volume attached to the openVPN server",
+      "Type" : "Number",
+      "ConstraintDescription" : "must be a valid size of an EBS gp2 volume."
+    },
+    
     "LBsubnetID" : {
       "Description" : "Load balancer subnet id",
       "Type" : "AWS::EC2::Subnet::Id",
@@ -65,13 +71,14 @@
         "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" } ],
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : "ami-405f7226",
+        "EbsOptimized" : "True",
         "BlockDeviceMappings" : [
                {
                   "DeviceName" : "/dev/sdm",
                   "Ebs" : {
                      "VolumeType" : "gp2",
                      "DeleteOnTermination" : "true",
-                     "VolumeSize" : "16",
+                     "VolumeSize" : { "Ref" : "EBSVolumeSize" },
                      "Encrypted" : "true"
                   }
                }
@@ -118,7 +125,7 @@
                 "IpProtocol": "tcp",
                 "FromPort": "3000",
                 "ToPort": "3000",
-                "CidrIp": "0.0.0.0/0"
+                "CidrIp": "10.10.0.0/16"
             }
      },
     
