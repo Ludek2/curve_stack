@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "This stack creates instances that are running Magical avaialble for users",
+  "Description" : "This stack creates VPN server and internal loadbalancer in order to access VMs that are running Magical, assuming that Magical is listenning on the port 3000",
 
   "Parameters" : {
     "InstanceType" : {
@@ -20,7 +20,7 @@
     },
     
     "VPCid" : {
-      "Description" : "VPC id where this stack will be deployed",
+      "Description" : "VPC of this stack",
       "Type" : "AWS::EC2::VPC::Id",
       "ConstraintDescription" : "must be the name of an existing VPC."
     },
@@ -37,6 +37,12 @@
         "ConstraintDescription" : "insert instance-id1, instance-id2, ..."
     },
     
+    "LBsecurityGroupId" : {
+        "Type" : "AWS::EC2::SecurityGroup::Id",
+        "Description" : "Load balancer security grop",
+        "ConstraintDescription" : "insert a security group id"
+    },
+    
     "SSHLocation" : {
       "Description" : "The IP address range that can be used to SSH to the EC2 instance",
       "Type": "String",
@@ -48,6 +54,10 @@
     }
   },
 
+  
+  
+  
+  
   "Resources" : {
     "EC2Instance" : {
       "Type" : "AWS::EC2::Instance",
@@ -76,6 +86,7 @@
       "Properties" : {
         "AvailabilityZones" : { "Fn::GetAZs" : "" },
         "Instances" :  { "Ref" : "LBInstanceIds"} ,
+        "SecurityGroups" : [ { "Ref" : "LBsecurityGroupId" }],
         "Listeners" : [ {
           "LoadBalancerPort" : "3000",
           "InstancePort" : "3000",
@@ -90,6 +101,17 @@
         }
       }
     },
+    
+    "LBSecurityGropupIngress": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupId": { "Ref": "LBsecurityGroupId" },
+                "IpProtocol": "tcp",
+                "FromPort": "3000",
+                "ToPort": "3000",
+                "SourceSecurityGroupId": { "Ref": "LBsecurityGroupId" }
+            }
+     },
     
     "IPAddress" : {
       "Type" : "AWS::EC2::EIP"
