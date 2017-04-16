@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "This template creates an instance for an openVPN server, also security group for this instance and creates an internal loadbalancer in order to access VMs that are running Magical, assuming that Magical is listenning on the port 3000, LB security group is updated to allow this connection",
+  "Description" : "This template creates: an instance for an openVPN server, security group for this instance, an internal loadbalancer in order to access VMs that are running Magical, assuming that Magical is listenning on the port 3000, LB security group is updated to allow this connection",
 
   "Parameters" : {
     "InstanceType" : {
