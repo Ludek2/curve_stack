@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "This stack creates instances that are running Magical avaialble for users",
+  "Description" : "This stack creates VPN server and internal loadbalancer in order to access VMs that are running Magical",
 
   "Parameters" : {
     "InstanceType" : {
@@ -20,7 +20,7 @@
     },
     
     "VPCid" : {
-      "Description" : "VPC id where this stack will be deployed",
+      "Description" : "VPC of this stack",
       "Type" : "AWS::EC2::VPC::Id",
       "ConstraintDescription" : "must be the name of an existing VPC."
     },
